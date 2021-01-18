@@ -1,7 +1,6 @@
 package gipsy.springframework.petclinic.services.map;
 
 import gipsy.springframework.petclinic.model.Vet;
-import gipsy.springframework.petclinic.services.CrudService;
 import gipsy.springframework.petclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +32,10 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
     @Override
     public Vet findById(Long id) {
         return super.findById(id);
+    }
+
+    @Override
+    public Vet findByLastName(String lastName) {
+        return null;
     }
 }
