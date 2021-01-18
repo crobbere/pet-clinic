@@ -2,10 +2,11 @@ package gipsy.springframework.petclinic.services.map;
 
 import gipsy.springframework.petclinic.model.Vet;
 import gipsy.springframework.petclinic.services.CrudService;
+import gipsy.springframework.petclinic.services.VetService;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
     public Set<Vet> findAll() {
