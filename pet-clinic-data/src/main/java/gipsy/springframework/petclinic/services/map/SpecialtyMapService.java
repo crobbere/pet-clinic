@@ -1,11 +1,13 @@
 package gipsy.springframework.petclinic.services.map;
 
 import gipsy.springframework.petclinic.model.Specialty;
-import gipsy.springframework.petclinic.services.SpecialtiesService;
+import gipsy.springframework.petclinic.services.SpecialityService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialtiesService {
+@Service
+public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialityService {
     @Override
     public Set<Specialty> findAll() {
         return super.findAll();

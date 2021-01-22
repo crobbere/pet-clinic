@@ -1,6 +1,8 @@
 package gipsy.springframework.petclinic.services.map;
 
+import gipsy.springframework.petclinic.model.Specialty;
 import gipsy.springframework.petclinic.model.Vet;
+import gipsy.springframework.petclinic.services.SpecialityService;
 import gipsy.springframework.petclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,12 @@ import java.util.Set;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+
+    private final SpecialityService specialityService;
+
+    public VetServiceMap(SpecialityService specialityService) {
+        this.specialityService = specialityService;
+    }
 
     @Override
     public Set<Vet> findAll() {
@@ -26,6 +34,14 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet object) {
+        if(object.getSpecialties().size() > 0){
+            object.getSpecialties().forEach(speciality -> {
+                if(speciality.getId()==null){
+                    Specialty savedSpeciality = specialityService.save(speciality);
+                    speciality.setId(savedSpeciality.getId());
+                }
+            });
+        }
         return super.save(object);
     }
 
