@@ -1,10 +1,7 @@
 package gipsy.springframework.petclinic.bootstrap;
 
 import gipsy.springframework.petclinic.model.*;
-import gipsy.springframework.petclinic.services.OwnerService;
-import gipsy.springframework.petclinic.services.PetTypeService;
-import gipsy.springframework.petclinic.services.SpecialityService;
-import gipsy.springframework.petclinic.services.VetService;
+import gipsy.springframework.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +14,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -88,6 +87,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(flupkesPet);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(flupkesPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Holy moly dude, it's dying");
+
+        visitService.save(catVisit);
 
         System.out.println("Loaded Owners...");
 
