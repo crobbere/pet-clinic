@@ -1,6 +1,6 @@
 package gipsy.springframework.petclinic.services.map;
 
-import gipsy.springframework.petclinic.model.Specialty;
+import gipsy.springframework.petclinic.model.Speciality;
 import gipsy.springframework.petclinic.model.Vet;
 import gipsy.springframework.petclinic.services.SpecialityService;
 import gipsy.springframework.petclinic.services.VetService;
@@ -37,7 +37,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
         if(object.getSpecialties().size() > 0){
             object.getSpecialties().forEach(speciality -> {
                 if(speciality.getId()==null){
-                    Specialty savedSpeciality = specialityService.save(speciality);
+                    Speciality savedSpeciality = specialityService.save(speciality);
                     speciality.setId(savedSpeciality.getId());
                 }
             });
