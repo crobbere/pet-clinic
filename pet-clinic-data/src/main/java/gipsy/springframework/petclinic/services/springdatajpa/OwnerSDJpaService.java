@@ -5,13 +5,15 @@ import gipsy.springframework.petclinic.repositories.OwnerRepository;
 import gipsy.springframework.petclinic.repositories.PetRepository;
 import gipsy.springframework.petclinic.repositories.PetTypeRepository;
 import gipsy.springframework.petclinic.services.OwnerService;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-@Component
+@Service
+@Profile("springdatajpa")
 public class OwnerSDJpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;
