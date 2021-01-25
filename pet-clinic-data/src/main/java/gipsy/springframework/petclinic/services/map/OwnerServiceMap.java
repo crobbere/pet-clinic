@@ -5,11 +5,13 @@ import gipsy.springframework.petclinic.model.Pet;
 import gipsy.springframework.petclinic.services.OwnerService;
 import gipsy.springframework.petclinic.services.PetService;
 import gipsy.springframework.petclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;
